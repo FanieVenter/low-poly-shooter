@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cna8b3tn1xd2l"]
+
+[ext_resource type="PackedScene" uid="uid://cqtan5ugokr1h" path="res://Scenes/Guns/Pistol/pistol.dae" id="1_2uwns"]
+[ext_resource type="Script" path="res://Scenes/Guns/Pistol/pistol.gd" id="2_ikbnp"]
+
+[node name="pistol" instance=ExtResource("1_2uwns")]
+script = ExtResource("2_ikbnp")
+
+[node name="Cube_003" parent="." index="0"]
+transform = Transform3D(-1, 1.10442e-06, 1.18399e-07, -1.10467e-06, -0.999998, -0.00209284, 1.16087e-07, -0.00209284, 0.999998, 0.0076448, 0.245515, -0.380666)
+
+[node name="Plane_003" parent="." index="1"]
+transform = Transform3D(0.036, 0, 0, 0, 0.999998, -0.000104642, 0, 0.00209284, 0.0499999, 0.00504705, 0.277457, -0.51176)
+
+[node name="Plane_002" parent="." index="2"]
+transform = Transform3D(0.036, 0, 0, 0, 0.999998, -0.000104642, 0, 0.00209284, 0.0499999, 0.00504705, 0.183313, -0.512386)
+
+[node name="Plane_001" parent="." index="3"]
+transform = Transform3D(0.036, 0, 0, 0, 0.999998, -0.000104642, 0, 0.00209284, 0.0499999, 0.00504705, 0.168407, -0.512203)
+
+[node name="Plane" parent="." index="4"]
+transform = Transform3D(0.036, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0.000139952, 0.216707, -0.391563)
+
+[node name="Cube_002" parent="." index="5"]
+transform = Transform3D(-1, -1.44432e-06, -1.18399e-07, 1.10467e-06, -1.30776, -0.00209284, -1.16087e-07, -0.00273695, 0.999998, 0.000867218, 0.227885, -0.462433)
+
+[node name="Cube_001" parent="." index="6"]
+transform = Transform3D(1.03764, 0, 0, 0, 0.999998, -0.00209284, 0, 0.00209284, 0.999998, 5.1558e-05, 0.448496, -0.98149)
+
+[node name="Cube" parent="." index="7"]
+transform = Transform3D(0.0752202, 0, 0, 0, 0.489938, 0.0299404, 0, -0.0998013, 0.146982, 0, -0.00376708, -0.102036)
+
+[node name="AnimationPlayer" parent="." index="8"]
+speed_scale = 2.0
+method_call_mode = 1

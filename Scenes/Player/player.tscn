@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_je25s"]
+[ext_resource type="PackedScene" uid="uid://cqtan5ugokr1h" path="res://Scenes/Guns/Pistol/pistol.dae" id="3_sqyvp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6b3ky"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_1w47b")
+_bullet_scene = ExtResource("2_je25s")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6b3ky")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3d" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468479, -0.463024)
+
+[node name="pistol" parent="Head/Camera3d" instance=ExtResource("3_sqyvp")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.457885, -0.312803, -0.360557)
+
+[node name="RayCast3d" type="RayCast3D" parent="Head/Camera3d/pistol"]
+transform = Transform3D(1.19209e-07, 0, 4, 0, 4, 0, -4, 0, 1.19209e-07, 0.0141916, 0.454322, 2.57174)
+target_position = Vector3(60, 0, 0)
