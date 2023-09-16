@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://elltatl3nvtg"]
+
+[ext_resource type="Texture2D" uid="uid://mi2401fve21t" path="res://Scenes/Guns/Pistol/Pistol.png" id="1_ejajb"]
+[ext_resource type="Script" path="res://Scenes/Gun Choosing Menu/gun_choosing_menu.gd" id="1_w2gkt"]
+[ext_resource type="Texture2D" uid="uid://dtehx0tyc7c5y" path="res://Scenes/Guns/Sniper/Sniper.png" id="2_1so6w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4cc2"]
+font_size = 40
+
+[node name="gun_choosing_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2gkt")
+
+[node name="Pistol" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -427.0
+offset_top = -101.0
+offset_right = -85.9996
+offset_bottom = 101.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("1_ejajb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Sniper" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = -101.0
+offset_right = 416.0
+offset_bottom = 101.0
+grow_vertical = 2
+texture_normal = ExtResource("2_1so6w")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 50.0
+offset_right = 149.0
+offset_bottom = 133.0
+grow_horizontal = 2
+text = "Choose your Gun"
+label_settings = SubResource("LabelSettings_x4cc2")
+
+[connection signal="pressed" from="Pistol" to="." method="_on_pistol_pressed"]
+[connection signal="pressed" from="Sniper" to="." method="_on_sniper_pressed"]
