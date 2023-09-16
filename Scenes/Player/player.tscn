@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=9 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_je25s"]
 [ext_resource type="PackedScene" uid="uid://cqtan5ugokr1h" path="res://Scenes/Guns/Pistol/pistol.dae" id="3_sqyvp"]
+[ext_resource type="Script" path="res://Scenes/Player/Camera3d.gd" id="3_v2faj"]
+[ext_resource type="PackedScene" uid="uid://duhrnt6u8fivi" path="res://Scenes/Guns/Sniper/Sniper.dae" id="4_kte2s"]
+[ext_resource type="PackedScene" uid="uid://b7ox2cwseru04" path="res://Scenes/Guns/Sniper/scope.dae" id="6_w4wre"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -21,11 +24,19 @@ mesh = SubResource("CapsuleMesh_6b3ky")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3d" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468479, -0.463024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.427)
+script = ExtResource("3_v2faj")
 
 [node name="pistol" parent="Head/Camera3d" instance=ExtResource("3_sqyvp")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.457885, -0.312803, -0.360557)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.5, -0.03, -0.3)
+visible = false
 
 [node name="RayCast3d" type="RayCast3D" parent="Head/Camera3d/pistol"]
-transform = Transform3D(1.19209e-07, 0, 4, 0, 4, 0, -4, 0, 1.19209e-07, 0.0141916, 0.454322, 2.57174)
+transform = Transform3D(1.19209e-07, 0, 4, 0, 4, 0, -4, 0, 1.19209e-07, -2.04904, 0, 2.566)
 target_position = Vector3(60, 0, 0)
+
+[node name="Sniper" parent="Head/Camera3d" instance=ExtResource("4_kte2s")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.494469, -0.276859, -0.918072)
+
+[node name="scope" parent="Head/Camera3d" instance=ExtResource("6_w4wre")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.221601)

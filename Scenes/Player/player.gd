@@ -8,7 +8,7 @@ var mouse_relative_x = 0
 var mouse_relative_y = 0
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+var mouse_visible = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -20,8 +20,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	if Input.is_action_just_pressed("Escape"):
+		mouse_visible = !mouse_visible;
 	# Handle Jump.
+	if (mouse_visible):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	# Handle Shooting
@@ -38,8 +43,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	
 
 func _input(event):
+	
+	
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouseSensibility
 		$Head/Camera3d.rotation.x -= event.relative.y / mouseSensibility
