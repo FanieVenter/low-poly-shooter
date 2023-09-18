@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=11 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_je25s"]
@@ -6,22 +6,26 @@
 [ext_resource type="Script" path="res://Scenes/Player/Camera3d.gd" id="3_v2faj"]
 [ext_resource type="PackedScene" uid="uid://duhrnt6u8fivi" path="res://Scenes/Guns/Sniper/Sniper.dae" id="4_kte2s"]
 [ext_resource type="PackedScene" uid="uid://b7ox2cwseru04" path="res://Scenes/Guns/Sniper/scope.dae" id="6_w4wre"]
+[ext_resource type="ArrayMesh" uid="uid://b8yams2dckpwg" path="res://Scenes/Player/Player.obj" id="8_f4oth"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8s2pb"]
+properties/0/path = NodePath(".:motion_mode")
+properties/0/spawn = false
+properties/0/sync = true
+properties/0/watch = false
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6b3ky"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_roul3"]
+points = PackedVector3Array(2.32276, 10.1085, 2.01109, 2.86215, 11.5456, 3.08874, 3.94005, 11.3659, 3.08874, -0.550905, 10.1085, 3.26843, -0.337548, 11.4773, 2.07082, -0.550905, 11.5456, 3.26843, 2.86215, 11.5456, 2.01109, -0.550905, 10.1085, 2.01109, 3.94005, 10.4679, 3.08874, 3.94005, 10.4679, 2.1909, 2.14296, 10.1085, 3.26843, 3.94005, 11.3659, 2.1909, 2.14296, 11.5456, 3.26843, 3.04107, 10.2881, 2.01109, 3.22086, 10.2881, 3.08874, 2.32276, 10.1085, 3.08874, 3.04107, 11.3659, 2.01109, 3.22086, 10.2881, 2.1909)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f2lpg"]
+points = PackedVector3Array(0.708868, 11.1956, 2.0197, 0.994723, 13.3219, 1, -1, 13.2222, 0.970391, -0.730262, 2.20438, 2.01109, 0.633825, 2.78577, -1.966, 0.6165, 10.6225, -2.87217, 0.649908, 2.65709, 1.80595, -0.730262, 2.20438, -2.12041, -0.987955, 13.1579, -1, -0.730262, 7.9528, -3.19842, 1.06584, 11.545, -1.04241, -1.08982, 11.545, -1.04241, 0.963974, 13.1579, -1, 0.526713, 6.5157, -3.01841, -0.65, 10.8237, 1.72002, -0.6432, 10.6349, -2.8827, 1.06584, 11.545, 1.11258, -1.08982, 11.545, 1.11258)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
 _bullet_scene = ExtResource("2_je25s")
 
-[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_emkox")
-
-[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_6b3ky")
-
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.736089, -0.0821728)
 
 [node name="Camera3d" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.427)
@@ -36,7 +40,22 @@ transform = Transform3D(1.19209e-07, 0, 4, 0, 4, 0, -4, 0, 1.19209e-07, -2.04904
 target_position = Vector3(60, 0, 0)
 
 [node name="Sniper" parent="Head/Camera3d" instance=ExtResource("4_kte2s")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.494469, -0.276859, -0.918072)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.375212, -0.276859, -0.918072)
 
 [node name="scope" parent="Head/Camera3d" instance=ExtResource("6_w4wre")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.221601)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8s2pb")
+
+[node name="Player" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
+mesh = ExtResource("8_f4oth")
+
+[node name="@CollisionShape3D@84173" type="CollisionShape3D" parent="."]
+transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
+shape = SubResource("ConvexPolygonShape3D_roul3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
+shape = SubResource("ConvexPolygonShape3D_f2lpg")

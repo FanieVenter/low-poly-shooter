@@ -1,0 +1,141 @@
+[gd_scene load_steps=2 format=3 uid="uid://coya7cnodg52o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6we6"]
+font_size = 35
+
+[node name="Key Mapping" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Forward" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.4688
+offset_top = -87.5
+offset_right = 106.531
+offset_bottom = -56.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.4688
+offset_top = -52.5
+offset_right = 106.531
+offset_bottom = -21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.4688
+offset_top = -13.5
+offset_right = 106.531
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Right" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.4688
+offset_top = 24.5
+offset_right = 106.531
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Left"
+
+[node name="Forward2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -87.0
+offset_right = 19.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Forward"
+
+[node name="Back2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -52.0
+offset_right = 20.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="Right2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = 27.0
+offset_right = 12.5
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Right"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 47.0
+offset_right = 228.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "Choose Your Keybinds"
+label_settings = SubResource("LabelSettings_k6we6")

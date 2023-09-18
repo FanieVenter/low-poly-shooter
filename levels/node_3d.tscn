@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=13 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="1_ujgwk"]
 [ext_resource type="Texture2D" uid="uid://cgp4mvev1cbra" path="res://addons/devblocks/textures/purple/texture_01.png" id="3_m1rsk"]
 [ext_resource type="PackedScene" uid="uid://kym3mkxce8b5" path="res://Scenes/Fps/fps.tscn" id="4_2v63w"]
-[ext_resource type="PackedScene" uid="uid://cqh2p7oifpcnh" path="res://in_game_menu.tscn" id="5_ud5bg"]
-[ext_resource type="PackedScene" uid="uid://ch8a7an2nu3x5" path="res://crosshair.tscn" id="6_d42xm"]
+[ext_resource type="PackedScene" uid="uid://cqh2p7oifpcnh" path="res://Guis/in_game_menu.tscn" id="5_ud5bg"]
+[ext_resource type="PackedScene" uid="uid://ch8a7an2nu3x5" path="res://Guis/crosshair.tscn" id="6_d42xm"]
+[ext_resource type="PackedScene" uid="uid://coya7cnodg52o" path="res://Guis/key_mapping.tscn" id="7_x00n3"]
+[ext_resource type="Script" path="res://Guis/key_mapping.gd" id="8_e2b1h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -31,9 +33,6 @@ environment = SubResource("Environment_l5pxq")
 transform = Transform3D(9.10803, 0, 0, 0, 1, 0, 0, 0, 9, 6.49497, 2.07954, -31.5179)
 block_color_group = 1
 block_style = 2
-
-[node name="Player" parent="." instance=ExtResource("1_eisjc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.966349, 0.250904, -0.0567091, 0.182362, -0.512743, 0.838951, 0.181419, -0.821061, -0.541244, -0.00693703, 59.5145, -109.348)
@@ -72,3 +71,10 @@ block_style = 2
 
 [node name="In Game Menu" parent="." instance=ExtResource("5_ud5bg")]
 visible = false
+
+[node name="Key Mapping" parent="." instance=ExtResource("7_x00n3")]
+visible = false
+script = ExtResource("8_e2b1h")
+
+[node name="Player" parent="." instance=ExtResource("1_eisjc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86628, 2.57629, 0.388547)

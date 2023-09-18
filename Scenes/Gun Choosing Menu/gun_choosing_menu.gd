@@ -4,13 +4,13 @@ var chosen_gun
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var chosen_gun = get_node("/root/chose_gun")
+	pass
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(chosen_gun)
+	
 	pass
 
 
