@@ -1,18 +1,21 @@
 extends Node
-@onready var meny = $Menu
+@onready var crosshair = $crosshair
 var peer = ENetMultiplayerPeer.new()
 var Ip
 var port
+var chosen_gun
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var Ip = "localhost"
+	var port = "20"
 # By default, these expressions are interchangeable.
 	multiplayer # Get the MultiplayerAPI object configured for this node.
 	get_tree().get_multiplayer() # Get the default MultiplayerAPI object.
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	crosshair.visible = false
 # Called every fDrame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+
 
 
 
@@ -25,7 +28,7 @@ func _on_join_pressed():
 	$Menu.visible = false
 	$Background.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	crosshair.visible = true
 	
 
 
@@ -39,6 +42,7 @@ func _on_host_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	multiplayer.peer_connected.connect(func(id): add_player_character(id))
 	add_player_character()
+	crosshair.visible = true
 	
 	
 func add_player_character(id=1):

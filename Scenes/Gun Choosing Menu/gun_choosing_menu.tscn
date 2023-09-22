@@ -15,6 +15,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w2gkt")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.278431, 0.278431, 0.278431, 1)
 
 [node name="Pistol" type="TextureButton" parent="."]
 layout_mode = 1
@@ -32,6 +42,7 @@ grow_vertical = 2
 texture_normal = ExtResource("1_ejajb")
 ignore_texture_size = true
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sniper" type="TextureButton" parent="."]
 layout_mode = 1
@@ -46,6 +57,7 @@ grow_vertical = 2
 texture_normal = ExtResource("2_1so6w")
 ignore_texture_size = true
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -59,6 +71,7 @@ offset_bottom = 133.0
 grow_horizontal = 2
 text = "Choose your Gun"
 label_settings = SubResource("LabelSettings_x4cc2")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Pistol" to="." method="_on_pistol_pressed"]
 [connection signal="pressed" from="Sniper" to="." method="_on_sniper_pressed"]

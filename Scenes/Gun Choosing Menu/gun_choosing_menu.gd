@@ -1,6 +1,6 @@
 extends Control
 
-var chosen_gun
+var chosen_gun = "Sniper"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,16 +10,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	#print(chosen_gun)
 	pass
 
 
 func _on_sniper_pressed():
-	chosen_gun = "sniper"
-	pass # Replace with function body.
+	chosen_gun = "Sniper"
+	print(chosen_gun, " Chosen")
+	
 
 
 func _on_pistol_pressed():
-	chosen_gun = "pistol"
+	chosen_gun = "Pistol"
+	print(chosen_gun, " Chosen")
 	
-	pass # Replace with function body.

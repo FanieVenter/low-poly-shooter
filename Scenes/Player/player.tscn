@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=12 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_je25s"]
 [ext_resource type="PackedScene" uid="uid://cqtan5ugokr1h" path="res://Scenes/Guns/Pistol/pistol.dae" id="3_sqyvp"]
 [ext_resource type="Script" path="res://Scenes/Player/Camera3d.gd" id="3_v2faj"]
-[ext_resource type="PackedScene" uid="uid://duhrnt6u8fivi" path="res://Scenes/Guns/Sniper/Sniper.dae" id="4_kte2s"]
 [ext_resource type="PackedScene" uid="uid://b7ox2cwseru04" path="res://Scenes/Guns/Sniper/scope.dae" id="6_w4wre"]
-[ext_resource type="ArrayMesh" uid="uid://b8yams2dckpwg" path="res://Scenes/Player/Player.obj" id="8_f4oth"]
+[ext_resource type="PackedScene" uid="uid://dlstftg8uxwed" path="res://Scenes/Player/sniper.tscn" id="7_irsqc"]
+[ext_resource type="PackedScene" uid="uid://bev6cr8o40kyk" path="res://Scenes/Player/Player-col.blend" id="8_2p2uu"]
+[ext_resource type="PackedScene" uid="uid://elltatl3nvtg" path="res://Scenes/Gun Choosing Menu/gun_choosing_menu.tscn" id="8_mm538"]
+[ext_resource type="Script" path="res://Scenes/Player/Player-model.gd" id="9_u0jcu"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8s2pb"]
 properties/0/path = NodePath(".:motion_mode")
@@ -14,11 +16,7 @@ properties/0/spawn = false
 properties/0/sync = true
 properties/0/watch = false
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_roul3"]
-points = PackedVector3Array(2.32276, 10.1085, 2.01109, 2.86215, 11.5456, 3.08874, 3.94005, 11.3659, 3.08874, -0.550905, 10.1085, 3.26843, -0.337548, 11.4773, 2.07082, -0.550905, 11.5456, 3.26843, 2.86215, 11.5456, 2.01109, -0.550905, 10.1085, 2.01109, 3.94005, 10.4679, 3.08874, 3.94005, 10.4679, 2.1909, 2.14296, 10.1085, 3.26843, 3.94005, 11.3659, 2.1909, 2.14296, 11.5456, 3.26843, 3.04107, 10.2881, 2.01109, 3.22086, 10.2881, 3.08874, 2.32276, 10.1085, 3.08874, 3.04107, 11.3659, 2.01109, 3.22086, 10.2881, 2.1909)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f2lpg"]
-points = PackedVector3Array(0.708868, 11.1956, 2.0197, 0.994723, 13.3219, 1, -1, 13.2222, 0.970391, -0.730262, 2.20438, 2.01109, 0.633825, 2.78577, -1.966, 0.6165, 10.6225, -2.87217, 0.649908, 2.65709, 1.80595, -0.730262, 2.20438, -2.12041, -0.987955, 13.1579, -1, -0.730262, 7.9528, -3.19842, 1.06584, 11.545, -1.04241, -1.08982, 11.545, -1.04241, 0.963974, 13.1579, -1, 0.526713, 6.5157, -3.01841, -0.65, 10.8237, 1.72002, -0.6432, 10.6349, -2.8827, 1.06584, 11.545, 1.11258, -1.08982, 11.545, 1.11258)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qk4un"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
@@ -39,23 +37,67 @@ visible = false
 transform = Transform3D(1.19209e-07, 0, 4, 0, 4, 0, -4, 0, 1.19209e-07, -2.04904, -0.0193646, 2.566)
 target_position = Vector3(60, 0, 0)
 
-[node name="Sniper" parent="Head/Camera3d" instance=ExtResource("4_kte2s")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.375212, -0.276859, -0.918072)
-
 [node name="scope" parent="Head/Camera3d" instance=ExtResource("6_w4wre")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.221601)
+
+[node name="gun_choosing_menu" parent="Head/Camera3d" instance=ExtResource("8_mm538")]
+visible = false
+
+[node name="Sniper" parent="Head/Camera3d" instance=ExtResource("7_irsqc")]
+transform = Transform3D(-3.77156e-08, 2.20957e-08, -1, 0.50549, 0.862832, 0, 0.862832, -0.50549, -4.37114e-08, 0.375, -0.357, -0.132523)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Head/Camera3d/Sniper"]
+transform = Transform3D(-0.0121996, 0.999926, 6.02697e-08, -0.999926, -0.0121996, 1.53476e-08, 1.60817e-08, -6.0078e-08, 1, -0.632741, 0.152579, 0.00387648)
+visible = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_8s2pb")
 
-[node name="Player" type="MeshInstance3D" parent="."]
+[node name="Player-col" parent="." instance=ExtResource("8_2p2uu")]
 transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
-mesh = ExtResource("8_f4oth")
+script = ExtResource("9_u0jcu")
 
-[node name="@CollisionShape3D@84173" type="CollisionShape3D" parent="."]
-transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
-shape = SubResource("ConvexPolygonShape3D_roul3")
+[node name="Skeleton3D" parent="Player-col/Armature" index="0"]
+bones/11/scale = Vector3(1, 1, 1)
+
+[node name="Cube" parent="Player-col/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, -1.06957e-09, 2.32831e-10, 7.85803e-10, 1, 0, 6.98492e-10, -9.31323e-09, 1, 2.80161e-08, 3.73493, 3.44589e-08)
+bone_idx = 5
+
+[node name="Cube_002" parent="Player-col/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, -7.10543e-14, 0, 1, 9.31323e-10, 0, 9.31323e-10, 1, 0.0982525, 2.36044, -0.0705629)
+bone_idx = 6
+
+[node name="Cube_003" parent="Player-col/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 2.7474e-08, 4.47035e-08, 7.63685e-08, -1, -6.78003e-07, -1.49012e-08, 6.29574e-07, -1, -0.0295238, -1.31043, 2.56809)
+bone_idx = 11
+
+[node name="Cube_004" parent="Player-col/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-6.91507e-08, 7.45058e-08, -1, -1, 7.45058e-08, 2.32831e-10, 1.32248e-07, 0.935543, 6.70552e-08, -0.0133974, 0.471121, 2.56099)
+bone_idx = 12
+
+[node name="Cube_005" parent="Player-col/Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, -5.40167e-08, 0, 1.21072e-08, -1, -3.68804e-07, 7.45058e-08, 3.48315e-07, -1, -0.00961524, -1.31043, -2.5603)
+bone_idx = 17
+
+[node name="Cube_006" parent="Player-col/Armature/Skeleton3D" index="5"]
+transform = Transform3D(-3.76895e-08, -7.45058e-08, -1, -1, -2.18279e-07, 1.1659e-07, -1.07219e-07, 0.935544, -4.47035e-08, -0.0133972, 0.471119, -2.56739)
+bone_idx = 18
+
+[node name="Cube_001" parent="Player-col/Armature/Skeleton3D" index="6"]
+transform = Transform3D(0.64995, 0, 0, 0, 2.2251, 0, 0, 0, 1.98022, 0, -0.0878172, 0)
+bone_idx = 19
+
+[node name="Cube_007" parent="Player-col/Armature/Skeleton3D" index="7"]
+transform = Transform3D(-1, -2.44007e-07, -2.38419e-07, 2.8871e-07, -1, 2.11818e-07, 1.30385e-08, 2.14292e-07, 1, 0.0130574, -4.83451, 1.09564)
+bone_idx = 23
+
+[node name="Cube_008" parent="Player-col/Armature/Skeleton3D" index="8"]
+transform = Transform3D(-1, -1.52737e-07, -3.12924e-07, 1.56462e-07, -1, 7.75326e-08, -6.89179e-08, 9.95351e-09, 1, 0.0130581, -4.83451, -1.14329)
+bone_idx = 26
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-6.55671e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.55671e-09, 0, -1.15, -0.3)
-shape = SubResource("ConvexPolygonShape3D_f2lpg")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045828, -0.300547)
+shape = SubResource("CapsuleShape3D_qk4un")
+
+[editable path="Player-col"]

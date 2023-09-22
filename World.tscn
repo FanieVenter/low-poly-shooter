@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://0msuab0aemv7"]
+[gd_scene load_steps=5 format=3 uid="uid://0msuab0aemv7"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_3328e"]
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_u7w4e"]
+[ext_resource type="PackedScene" uid="uid://elltatl3nvtg" path="res://Scenes/Gun Choosing Menu/gun_choosing_menu.tscn" id="3_vtygb"]
+[ext_resource type="PackedScene" uid="uid://ch8a7an2nu3x5" path="res://Guis/crosshair.tscn" id="4_kw3kt"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_3328e")
+
+[node name="gun_choosing_menu" parent="." instance=ExtResource("3_vtygb")]
+visible = false
+
+[node name="crosshair" parent="." instance=ExtResource("4_kw3kt")]
 
 [node name="Spawn" type="Node" parent="."]
 
@@ -16,7 +23,6 @@ spawn_path = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.43953, 0, 0.414973)
 
 [node name="Background" type="ColorRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,7 +31,6 @@ grow_vertical = 2
 color = Color(0.298039, 0.298039, 0.298039, 1)
 
 [node name="Menu" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

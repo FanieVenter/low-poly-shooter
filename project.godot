@@ -12,14 +12,13 @@ config_version=5
 
 config/name="Low Poly Shooter"
 config/tags=PackedStringArray("fps")
-run/main_scene="res://World.tscn"
+run/main_scene="res://levels/node_3d.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
 Settings="*res://Global/Settings.gd"
-ChosenGun="*res://chosen_gun.gd"
 
 [display]
 
@@ -81,8 +80,13 @@ sprint={
 
 [rendering]
 
+gl_compatibility/nvidia_disable_threaded_optimization=false
+renderer/rendering_method.web="forward_plus"
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality.mobile=5
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=5
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
-anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/canvas_textures/default_texture_repeat=1
