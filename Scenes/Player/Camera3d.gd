@@ -1,5 +1,7 @@
 extends Camera3D
 var chosen_gun
+var sniper_zoomed = Vector3(0,-0.2,-0.509) 
+@onready var sniper_anim = $Sniper/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -10,14 +12,17 @@ func _ready():
 func _process(delta):
 	var chosen_gun = get_node("gun_choosing_menu").chosen_gun
 	if chosen_gun == "Sniper":
-		if Input.is_action_pressed("zoom"):
-			fov = 35
-			$Sniper.visible = false
-			$scope.visible = true
-		else:
-			fov = 90
-			$Sniper.visible = true
-			$scope.visible = false
+		if !sniper_anim.is_playing():
+			if Input.is_action_just_pressed("zoom"):
+				sniper_anim.play("zoom_in")
+				get_tree().create_timer(1).timeout
+				fov = 35
+			if !Input.is_action_pressed("zoom"):
+				if $Sniper.position == sniper_zoomed:
+						sniper_anim.play("zoom_out")
+						get_tree().create_timer(1).timeout
+						fov = 90
+					
 	else:
-		$scope.visible = false
+		pass
 	pass

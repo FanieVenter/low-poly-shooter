@@ -1,11 +1,13 @@
 extends CharacterBody3D
 var shoot_distance
 #@onready var chosen_gun = $gun_choosing_menu
-@onready var shootRay = $Head/Camera3d/pistol/RayCast3d as RayCast3D
-@onready var gunRay = $Head/Camera3d/Sniper/RayCast3D as RayCast3D
-@onready var Cam = $Head/Camera3d as Camera3D
-@export var _bullet_scene : PackedScene
+@onready var gun_barrel = $Camera3d/Sniper/RayCast3D
+@onready var Cam = $Camera3d as Camera3D
+var bullet = load("res://Scenes/Bullet/Bullet.tscn")
+var instance
+@onready var Sniper = $Camera3d/Sniper
 @onready var synchronizer = $MultiplayerSynchronizer
+@onready var sniper_anim = $Camera3d/Sniper/AnimationPlayer
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
@@ -13,7 +15,7 @@ var SPEED = 5.0
 const JUMP_VELOCITY = 5
 var mouse_visible = true
 var chosen_gun
-
+var sniper_cooldown = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,22 +27,32 @@ func _ready():
 	#Captures mouse and stops rgun from hitting yourself
 	synchronizer.set_multiplayer_authority(str(name).to_int())
 	Cam.current = synchronizer.is_multiplayer_authority()
-	shootRay.add_exception(self)
-	gunRay.add_exception(self)
 	
 func _physics_process(delta):
 	
+	if Input.is_action_pressed("Shoot"):
+		if sniper_cooldown == 0:
+			if !sniper_anim.is_playing():
+				sniper_anim.play("shoot")
+				instance = bullet.instantiate()
+				instance.position = gun_barrel.global_position
+				instance.transform.basis = $Camera3d.global_transform.basis
+				get_parent().add_child(instance)
+				sniper_cooldown = 1
+				await get_tree().create_timer(3.0).timeout
+				sniper_cooldown = 0
+				
 		
 	
-	var chosen_gun = get_node("Head/Camera3d/gun_choosing_menu").chosen_gun
+	var chosen_gun = get_node("Camera3d/gun_choosing_menu").chosen_gun
 	if chosen_gun == "Pistol":
 		shoot_distance = 10
-		$Head/Camera3d/pistol.visible = true
+		$Camera3d/pistol.visible = true
 	if chosen_gun == null:
 		shoot_distance = 1
 	if chosen_gun == "Sniper":
 		shoot_distance = 35
-		$Head/Camera3d/Sniper.visible = true
+		$Camera3d/Sniper.visible = true
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -52,10 +64,7 @@ func _physics_process(delta):
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	# Handle Shooting
-	if Input.is_action_just_pressed("Shoot"):
-		shoot()
+		velocity.y = JUMP_VELOCITY 
 	if Input.is_action_pressed("sprint"):
 		if !Input.is_action_pressed("zoom"):
 			
@@ -87,27 +96,8 @@ func _input(event):
 	
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouseSensibility
-		$Head/Camera3d.rotation.x -= event.relative.y / mouseSensibility
-		$Head/Camera3d.rotation.x = clamp($Head/Camera3d.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
+		$Camera3d.rotation.x -= event.relative.y / mouseSensibility
+		$Camera3d.rotation.x = clamp($Camera3d.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 
-func shoot():
-	if not shootRay.is_colliding():
-		return
-	if shootRay.is_colliding():
-		var origin = shootRay.global_transform.origin
-		var collision_point = shootRay.get_collision_point()
-		var distance = origin.distance_to(collision_point)
-		var bulletInst = _bullet_scene.instantiate() as Node3D
-		var origin_gun = gunRay.global_transform.origin
-		var gun_collision_point = gunRay.get_collision_point()
-		var gun_distance = origin_gun.distance_to(gun_collision_point)
-		if distance < shoot_distance:
-			if gun_distance > 0.1:
-				if Input.is_action_pressed("sprint") != true:
-					bulletInst.set_as_top_level(true)
-					get_parent().add_child(bulletInst)
-					bulletInst.global_transform.origin = shootRay.get_collision_point() as Vector3
-					bulletInst.look_at((shootRay.get_collision_point()+shootRay.get_collision_normal()),Vector3.BACK)
-			
