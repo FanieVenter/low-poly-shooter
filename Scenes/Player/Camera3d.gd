@@ -10,17 +10,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !self.current:
+		self.current = true
 	var chosen_gun = get_node("gun_choosing_menu").chosen_gun
 	if chosen_gun == "Sniper":
 		if !sniper_anim.is_playing():
 			if Input.is_action_just_pressed("zoom"):
 				sniper_anim.play("zoom_in")
-				get_tree().create_timer(1).timeout
+				get_tree().create_timer(2).timeout
 				fov = 35
 			if !Input.is_action_pressed("zoom"):
 				if $Sniper.position == sniper_zoomed:
 						sniper_anim.play("zoom_out")
-						get_tree().create_timer(1).timeout
+						get_tree().create_timer(2).timeout
 						fov = 90
 					
 	else:

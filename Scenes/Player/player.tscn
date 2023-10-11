@@ -8,18 +8,18 @@
 [ext_resource type="Script" path="res://Scenes/Player/Player-model.gd" id="9_u0jcu"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8s2pb"]
-properties/0/path = NodePath(".:motion_mode")
-properties/0/spawn = false
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qk4un"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1)
 script = ExtResource("1_1w47b")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." groups=["player"]]
 replication_config = SubResource("SceneReplicationConfig_8s2pb")
 
 [node name="Player-col" parent="." instance=ExtResource("8_2p2uu")]

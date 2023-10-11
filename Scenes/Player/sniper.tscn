@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlstftg8uxwed"]
+[gd_scene load_steps=11 format=3 uid="uid://dlstftg8uxwed"]
 
 [ext_resource type="PackedScene" uid="uid://duhrnt6u8fivi" path="res://Scenes/Guns/Sniper/Sniper.dae" id="1_ug7ro"]
 [ext_resource type="Script" path="res://Scenes/Player/sniper.gd" id="2_th8cm"]
@@ -71,17 +71,28 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.2, -0.509, 1, 1, 0.375, -0.357, -0.916)
 
+[sub_resource type="Animation" id="Animation_wjbpr"]
+resource_name = "zoom_shoot"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.2, -0.509, 0.2, 1, 0, -0.2, -0.459, 1, 1, 0, -0.2, -0.509)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0sbto"]
 _data = {
 "Running": SubResource("Animation_rxlgk"),
 "Running_stop": SubResource("Animation_v5i38"),
 "shoot": SubResource("Animation_drldr"),
 "zoom_in": SubResource("Animation_ou4k7"),
-"zoom_out": SubResource("Animation_elt7b")
+"zoom_out": SubResource("Animation_elt7b"),
+"zoom_shoot": SubResource("Animation_wjbpr")
 }
 
 [node name="Sniper" instance=ExtResource("1_ug7ro")]
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, -0.2, -0.133)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, -0.2, -0.509)
 script = ExtResource("2_th8cm")
 
 [node name="Cylinder_003" parent="." index="0"]

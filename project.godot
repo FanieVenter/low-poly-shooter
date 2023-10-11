@@ -12,16 +12,18 @@ config_version=5
 
 config/name="Low Poly Shooter"
 config/tags=PackedStringArray("fps")
-run/main_scene="res://levels/node_3d.tscn"
+run/main_scene="res://main_scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
 Settings="*res://Global/Settings.gd"
+GameManager="*res://scripts/GameManager.gd"
 
 [display]
 
+window/size/mode=2
 window/vsync/vsync_mode=2
 
 [input]

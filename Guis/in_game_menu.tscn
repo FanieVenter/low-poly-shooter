@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqh2p7oifpcnh"]
+[gd_scene load_steps=3 format=3 uid="uid://cqh2p7oifpcnh"]
 
 [ext_resource type="Script" path="res://Guis/in_game_menu.gd" id="1_h1pk3"]
+[ext_resource type="PackedScene" uid="uid://sa1g2gcdoqxf" path="res://Guis/multiplayer.tscn" id="2_nv4qm"]
 
 [node name="In Game Menu" type="Control"]
 layout_mode = 3
@@ -28,27 +29,38 @@ text = "Quit Game"
 
 [node name="Return to game" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.439
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.439
-offset_left = -64.0
-offset_top = -54.472
-offset_right = 65.0
-offset_bottom = -23.472
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -93.5
+offset_right = 64.5
+offset_bottom = -62.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Return to game"
 
 [node name="Leave_game" type="Button" parent="."]
-layout_mode = 0
-offset_left = 521.0
-offset_top = 268.0
-offset_right = 624.0
-offset_bottom = 299.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = -55.5
+offset_right = 51.5
+offset_bottom = -24.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Leave Game
 "
+
+[node name="Multiplayer" parent="." instance=ExtResource("2_nv4qm")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Return to game" to="." method="_on_return_to_game_pressed"]

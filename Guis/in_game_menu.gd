@@ -30,6 +30,7 @@ func _on_return_to_game_pressed():
 
 func _on_leave_game_pressed():
 	visible = false
+	$Multiplayer.visible = true
 	multiplayer.multiplayer_peer = null
 	print("Left Game")
 

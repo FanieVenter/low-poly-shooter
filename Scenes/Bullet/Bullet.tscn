@@ -8,7 +8,7 @@
 albedo_color = Color(1, 1, 0.243137, 1)
 emission_enabled = true
 emission = Color(0, 0.803922, 0, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 16.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt40u"]
 albedo_color = Color(1, 1, 0.321569, 1)
@@ -36,6 +36,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_un1fs")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -0.6)
 hit_from_inside = true
+collide_with_areas = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00110871, -5.96046e-08, -0.637177)
