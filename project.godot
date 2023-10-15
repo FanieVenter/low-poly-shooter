@@ -20,11 +20,12 @@ config/icon="res://icon.png"
 
 Settings="*res://Global/Settings.gd"
 GameManager="*res://scripts/GameManager.gd"
+PlayerAttributes="*res://scripts/Player_attributes.gd"
 
 [display]
 
 window/size/mode=2
-window/vsync/vsync_mode=2
+window/vsync/vsync_mode=0
 
 [input]
 
@@ -80,15 +81,55 @@ sprint={
 ]
 }
 
+[physics]
+
+3d/run_on_separate_thread=true
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 gl_compatibility/nvidia_disable_threaded_optimization=false
+renderer/rendering_method.mobile="forward_plus"
 renderer/rendering_method.web="forward_plus"
+driver/threads/thread_model=2
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality.mobile=5
+lights_and_shadows/directional_shadow/16_bits=false
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=5
+reflections/sky_reflections/roughness_layers=128
+reflections/sky_reflections/texture_array_reflections.mobile=true
+reflections/sky_reflections/ggx_samples=128
+reflections/sky_reflections/fast_filter_high_quality=true
+reflections/reflection_atlas/reflection_size=512
+reflections/reflection_atlas/reflection_size.mobile=256
+reflections/reflection_atlas/reflection_count=128
+global_illumination/voxel_gi/quality=1
+textures/default_filters/anisotropic_filtering_level=4
+camera/depth_of_field/depth_of_field_bokeh_shape=2
+camera/depth_of_field/depth_of_field_bokeh_quality=3
+environment/ssao/quality=3
+environment/ssil/quality=3
+scaling_3d/mode=1
+textures/decals/filter=5
+textures/light_projectors/filter=5
+occlusion_culling/occlusion_rays_per_thread=1024
+environment/screen_space_reflection/roughness_quality=3
+environment/subsurface_scattering/subsurface_scattering_quality=3
+global_illumination/sdfgi/probe_ray_count=3
+global_illumination/sdfgi/frames_to_update_lights=4
+limits/opengl/max_renderable_lights=256
+limits/opengl/max_lights_per_object=1024
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
-anti_aliasing/quality/msaa_2d=1
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
+viewport/transparent_background=true
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true
+occlusion_culling/use_occlusion_culling=true
+lights_and_shadows/positional_shadow/atlas_16_bits=false
+lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=6
+lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=6
+lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=6
+lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=6
 anti_aliasing/canvas_textures/default_texture_repeat=1

@@ -1,7 +1,8 @@
 extends CharacterBody3D
 var shoot_distance
-var health
+var player_health = PlayerAttributes.player_health
 var hit_player
+var id 
 #@onready var chosen_gun = $gun_choosing_menu
 @onready var gun_barrel = $Camera3d/Sniper/RayCast3D
 @onready var Cam = $Camera3d as Camera3D
@@ -25,18 +26,20 @@ var sprint_duration = 0
 var anim
 var sniper
 func _ready():
-	health = 50
 	#Captures mouse and stops rgun from hitting yourself
 	synchronizer.set_multiplayer_authority(str(name).to_int())
 	Cam.current = synchronizer.is_multiplayer_authority()
 	
 func _physics_process(delta):
-	
-	if health < 1:
+	if !player_health == 200:
+		get_tree().create_timer(1).timeout
+		print(player_health)
+	if player_health <= 0:
+
 		get_tree().quit()
-	if health < 100:
+	if player_health < 100:
 		if hit_player == false:
-			health + 4
+			player_health + 4
 		get_tree().create_timer(1).timeout
 	if Input.is_action_pressed("Shoot"):
 		if sniper_cooldown == 0:
@@ -100,7 +103,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	
+func get_player_health():
+	return player_health
 
 func _input(event):
 	
@@ -112,7 +116,7 @@ func _input(event):
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 func hit():
-	health - 50
+	player_health - 50
 	hit_player = true
 	get_tree().create_timer(10).timeout
 	hit_player = false

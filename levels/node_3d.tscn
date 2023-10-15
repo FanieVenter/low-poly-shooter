@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=16 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="1_ujgwk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Guis/key_mapping.gd" id="8_e2b1h"]
 [ext_resource type="PackedScene" uid="uid://elltatl3nvtg" path="res://Scenes/Gun Choosing Menu/gun_choosing_menu.tscn" id="9_sauro"]
 [ext_resource type="PackedScene" uid="uid://cqh2p7oifpcnh" path="res://Guis/in_game_menu.tscn" id="10_nkmj0"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="11_iqg78"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -100,3 +101,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.81243, 1.0535, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.179712, 0, -0.983719, 0, 1, 0, 0.983719, 0, 0.179712, 0, 2.1655, 0)
+
+[node name="Bullet" parent="." instance=ExtResource("11_iqg78")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 222.143, 16.5671, 128.452)
